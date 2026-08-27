@@ -1,6 +1,7 @@
 # ProjetoAW2
 
-Onde se passa a história
+Onde se passa a história:
+em um mundo de alta fantasia chamado hexdragon
 
 A Jornada
 
