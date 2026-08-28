@@ -1,0 +1,15 @@
+.labirinto {
+    display: grid;
+    grid-template-columns: repeat(5, 80px);
+    grid-template-rows: repeat(5, 80px);
+}
+
+.labirinto div {
+    border: 1px solid white;
+    width: 80px;
+    height: 80px;
+}
+
+.esconder {
+    visibility : hidden;
+}
