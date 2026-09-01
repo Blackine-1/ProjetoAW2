@@ -18,7 +18,7 @@ Ao tocar na relíquia, o aventureiro recebe uma enorme quantidade de poder. Por�
 Ele retorna para sua vila e usa o poder da relíquia para protegê-la de perigos e trazer prosperidade para seu povo. Com o tempo, sua história se espalha por todo o reino.
 O jovem que partiu em busca de riqueza e fama retorna como um verdadeiro herói. Ele descobre que sua maior conquista não foi encontrar a relíquia, mas aprender que a verdadeira grandeza está na maneira como usamos aquilo que conquistamos.
 
-E assim termina sua primeira grande jornada — embora muitas outras aventuras ainda o aguardem.
+E assim termina sua primeira grande jornada embora muitas outras aventuras ainda o aguardem.
 
 resumo :
 Um jovem aventureiro entra em um perigoso labirinto em busca de uma poderosa relíquia. Depois de enfrentar monstros, armadilhas e enigmas, ele consegue encontrá-la e descobre que seu verdadeiro propósito é testar quem merece seu poder. Ao escolher ajudar sua vila em vez de buscar apenas riqueza e fama, ele retorna como um verdadeiro herói.

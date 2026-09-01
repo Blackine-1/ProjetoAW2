@@ -5,7 +5,7 @@
 }
 
 .labirinto div {
-    border: 1px solid white;
+    border: 1px solid black;
     width: 80px;
     height: 80px;
 }
