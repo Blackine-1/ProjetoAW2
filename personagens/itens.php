@@ -17,6 +17,10 @@ class Item {
     function getTipo() {
         return $this->tipo;
     }
+
+        function getSlot() {
+        return $this->slot;
+    }
 }
 
 
@@ -34,69 +38,57 @@ class Arma extends Item {
         return $this->dano;
     }
 
-    function getSlot() {
-        return $this->slot;
-    }
 }
 
 
 class Cabeca extends Item {
 
-    protected int $defesa;
+    protected int $VidaExtra;
     protected string $slot = "cabeça";
 
-    function __construct($nome, $defesa) {
+    function __construct($nome, $VidaExtra) {
         parent::__construct($nome, "cabeça");
-        $this->defesa = $defesa;
+        $this->VidaExtra = $VidaExtra;
     }
 
-    function getDefesa() {
-        return $this->defesa;
+    function getVidaExtra() {
+        return $this->VidaExtra;
     }
 
-    function getSlot() {
-        return $this->slot;
-    }
 }
 
 
 class Peitoral extends Item {
 
-    protected int $defesa;
+    protected int $VidaExtra;
     protected string $slot = "peitoral";
 
-    function __construct($nome, $defesa) {
+    function __construct($nome, $VidaExtra) {
         parent::__construct($nome, "peitoral");
-        $this->defesa = $defesa;
+        $this->VidaExtra = $VidaExtra;
     }
 
-    function getDefesa() {
-        return $this->defesa;
+    function getVidaExtra() {
+        return $this->VidaExtra;
     }
 
-    function getSlot() {
-        return $this->slot;
-    }
 }
 
 
 class Pernas extends Item {
 
-    protected int $defesa;
+    protected int $VidaExtra;
     protected string $slot = "pernas";
 
-    function __construct($nome, $defesa) {
+    function __construct($nome, $VidaExtra) {
         parent::__construct($nome, "pernas");
-        $this->defesa = $defesa;
+        $this->VidaExtra = $VidaExtra;
     }
 
-    function getDefesa() {
-        return $this->defesa;
+    function getVidaExtra() {
+        return $this->VidaExtra;
     }
 
-    function getSlot() {
-        return $this->slot;
-    }
 }
 
 ?>

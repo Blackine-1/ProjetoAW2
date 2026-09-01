@@ -8,6 +8,7 @@ class jogador extends base {
     protected string $genero;
 
     protected int $dano_base;
+    protected int $VidaBase;
 
     protected array $SalasLiberadas = [];
 
@@ -39,6 +40,9 @@ class jogador extends base {
         return $this->nome;
     }
 
+    function alteravida(){
+
+    }
 
     function getGenero() {
 
@@ -82,10 +86,25 @@ class jogador extends base {
 
                 $this->dano = $this->dano_base + $item->getDano();
             }
+
+            if ($item instanceof Cabeca){
+
+                $this->vida_atual = $this->vida_maxima + $item->GetVidaExtra();
+                $this->vida_maxima = $this->vida_maxima + $item->GetVidaExtra();
+            }
+            if ($item instanceof Peitoral){
+
+                $this->vida_atual = $this->vida_maxima + $item->GetVidaExtra();
+                $this->vida_maxima = $this->vida_maxima + $item->GetVidaExtra();
+            }
+            if ($item instanceof Pernas){
+
+                $this->vida_atual = $this->vida_maxima + $item->GetVidaExtra();
+                $this->vida_maxima = $this->vida_maxima + $item->GetVidaExtra();
+            }
         }
-    }
-
-
+        }
+            
     function desequiparItem($slot) {
 
         if (array_key_exists($slot, $this->equipamentos)) {

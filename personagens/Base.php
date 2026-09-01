@@ -31,6 +31,9 @@ class base {
         return $this->vida_atual;
     }
 
+    function getvidamax(){
+        return $this->vida_maxima;
+    }
 
     function getmorto() {
 
