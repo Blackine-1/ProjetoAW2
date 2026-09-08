@@ -1,123 +1,140 @@
-<?php
+<?php 
 
-require_once "personagens/base.php";
-require_once "itens.php";
+require_once "personagens/base.php"; 
+require_once "itens.php"; 
 
-class jogador extends base {
+class jogador extends base { 
 
-    protected string $genero;
+    protected string $genero; 
 
-    protected int $dano_base;
-    protected int $VidaBase;
+    protected int $dano_base; 
 
-    protected array $SalasLiberadas = [];
+    protected array $SalasLiberadas = []; 
 
-    protected array $inventario = [];
+    protected array $inventario = []; 
 
-    protected array $equipamentos = [
-        "cabeça" => null,
-        "peitoral" => null,
-        "pernas" => null,
-        "mao" => null
-    ];
-
-
-    function __construct($nome, $genero, $vida_maxima, $dano) {
-
-        $this->nome = $nome;
-        $this->vida_maxima = $vida_maxima;
-        $this->vida_atual = $vida_maxima;
-
-        $this->dano = $dano;
-        $this->dano_base = $dano;
-
-        $this->genero = $genero;
-    }
+    protected array $equipamentos = [ 
+        "cabeca" => null, 
+        "peito" => null, 
+        "perna" => null, 
+        "mao" => null 
+    ]; 
 
 
-    function getNome() {
+    function __construct($nome, $genero, $VidaBase, $dano) { 
 
-        return $this->nome;
-    }
+        $this->nome = $nome; 
 
-    function alteravida(){
+        $this->VidaBase = $VidaBase; 
+        $this->vida_maxima = $VidaBase; 
+        $this->vida_atual = $VidaBase; 
 
-    }
+        $this->dano = $dano; 
+        $this->dano_base = $dano; 
 
-    function getGenero() {
-
-        return $this->genero;
-    }
-
-
-    function getSalas() {
-
-        return $this->SalasLiberadas;
-    }
+        $this->genero = $genero; 
+    } 
 
 
-    function getInventario() {
+    function getNome() { 
 
-        return $this->inventario;
-    }
-
-
-    function getEquipamentos() {
-
-        return $this->equipamentos;
-    }
+        return $this->nome; 
+    } 
 
 
-    function colocaItem($item) {
+    function getGenero() { 
 
-        $this->inventario[] = $item;
-    }
+        return $this->genero; 
+    } 
 
 
-    function equiparItem($item) {
+    function getSalas() { 
 
-        $slot = $item->getSlot();
+        return $this->SalasLiberadas; 
+    } 
 
-        if (array_key_exists($slot, $this->equipamentos)) {
 
-            $this->equipamentos[$slot] = $item;
+    function getInventario() { 
 
-            if ($item instanceof Arma) {
+        return $this->inventario; 
+    } 
 
-                $this->dano = $this->dano_base + $item->getDano();
-            }
 
-            if ($item instanceof Cabeca){
+    function getEquipamentos() { 
 
-                $this->vida_atual = $this->vida_maxima + $item->GetVidaExtra();
-                $this->vida_maxima = $this->vida_maxima + $item->GetVidaExtra();
-            }
-            if ($item instanceof Peitoral){
+        return $this->equipamentos; 
+    } 
 
-                $this->vida_atual = $this->vida_maxima + $item->GetVidaExtra();
-                $this->vida_maxima = $this->vida_maxima + $item->GetVidaExtra();
-            }
-            if ($item instanceof Pernas){
 
-                $this->vida_atual = $this->vida_maxima + $item->GetVidaExtra();
-                $this->vida_maxima = $this->vida_maxima + $item->GetVidaExtra();
+    function colocaItem($item) { 
+
+        $this->inventario[] = $item; 
+    } 
+
+
+    function atualizaVida() {
+
+        $vidaAnterior = $this->vida_maxima;
+
+        $this->vida_maxima = $this->VidaBase;
+
+        foreach ($this->equipamentos as $item) {
+
+            if ($item instanceof armadura) {
+
+                $this->vida_maxima += $item->getVidaExtra();
+
             }
         }
+
+        $diferenca = $this->vida_maxima - $vidaAnterior;
+
+        $this->vida_atual += $diferenca;
+
+        if ($this->vida_atual > $this->vida_maxima) {
+
+            $this->vida_atual = $this->vida_maxima;
         }
-            
-    function desequiparItem($slot) {
+    }   
+    function equiparItem($item) { 
 
-        if (array_key_exists($slot, $this->equipamentos)) {
+        $slot = $item->getSlot(); 
 
-            $this->equipamentos[$slot] = null;
+        if (array_key_exists($slot, $this->equipamentos)) { 
 
-            if ($slot == "mao") {
+            $this->equipamentos[$slot] = $item; 
 
-                $this->dano = $this->dano_base;
-            }
-        }
-    }
+            if ($item instanceof Arma) { 
 
-}
+                $this->dano = $this->dano_base + $item->getDano(); 
+            } 
+
+            if ($item instanceof armadura) { 
+
+                $this->atualizaVida(); 
+            } 
+        } 
+    } 
+             
+
+    function desequiparItem($slot) { 
+
+        if (array_key_exists($slot, $this->equipamentos)) { 
+
+            $this->equipamentos[$slot] = null; 
+
+            if ($slot == "mao") { 
+
+                $this->dano = $this->dano_base; 
+            } 
+
+            if ($slot != "mao") { 
+
+                $this->atualizaVida(); 
+            } 
+        } 
+    } 
+
+} 
 
 ?>

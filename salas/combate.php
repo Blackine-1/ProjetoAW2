@@ -1,3 +1,9 @@
+<?php
+session_start();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +12,24 @@
     <title>Document</title>
 </head>
 <body>
+    <main class="combate">
     <h1>Combate</h1>
-    <section class="acoes">
 
 
+    <section class="personagens">
+   
+    
 
     </section>
+
+    <section class="acoes">
+
+        <div>Atacar</div>
+        <div>Defender</div>
+        <div>Inventário</div>
+        <div>Fugir</div>
+
+    </section>
+    </main>
 </body>
 </html>

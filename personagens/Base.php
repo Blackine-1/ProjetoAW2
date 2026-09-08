@@ -1,51 +1,61 @@
-<?php
+<?php 
 
-class base {
+class base { 
 
-    protected string $nome;
+    protected string $nome; 
+    protected int $VidaBase; 
     protected int $vida_maxima;
-    protected int $vida_atual;
-    protected int $dano;
-    protected bool $morto = false;
+    protected int $vida_atual; 
+    protected int $dano; 
+    protected bool $morto = false; 
 
 
-    function recebe_dano($dano_recebido) {
+    function recebe_dano($dano_recebido) { 
 
-        $this->vida_atual -= $dano_recebido;
+        $this->vida_atual -= $dano_recebido; 
 
-        if ($this->vida_atual <= 0) {
-            $this->vida_atual = 0;
-            $this->morto = true;
-        }
+        if ($this->vida_atual <= 0) { 
+            $this->vida_atual = 0; 
+            $this->morto = true; 
+        } 
+    } 
+
+
+    function atacar($inimigo) { 
+
+        $inimigo->recebe_dano($this->dano); 
+    } 
+
+
+    function getvida() { 
+
+        return $this->vida_atual; 
+    } 
+
+
+    function getvidamax() { 
+
+        return $this->vida_maxima; 
     }
 
 
-    function atacar($inimigo) {
+    function getVidaBase() { 
 
-        $inimigo->recebe_dano($this->dano);
+        return $this->VidaBase; 
     }
 
 
-    function getvida() {
+    function getmorto() { 
 
-        return $this->vida_atual;
-    }
-
-    function getvidamax(){
-        return $this->vida_maxima;
-    }
-
-    function getmorto() {
-
-        return $this->morto;
-    }
+        return $this->morto; 
+    } 
 
 
-    function getDano() {
+    function getDano() { 
 
-        return $this->dano;
-    }
+        return $this->dano; 
+    } 
 
-}
+} 
 
 ?>

@@ -1,15 +1,20 @@
-<?php
-require_once "personagens/base.php";
+<?php 
 
-class inimigo extends base {
+require_once "personagens/base.php"; 
 
-    function __construct($nome, $vida_maxima,$dano,){
-    $this->nome = $nome;
-    $this->vida_maxima = $vida_maxima;
-    $this->dano = $dano;
-    $this->vida_atual = $vida_maxima;
-}
+class inimigo extends base { 
 
-}
+    function __construct($nome, $VidaBase, $dano) { 
+
+        $this->nome = $nome; 
+
+        $this->VidaBase = $VidaBase; 
+        $this->vida_maxima = $VidaBase; 
+        $this->vida_atual = $VidaBase; 
+
+        $this->dano = $dano; 
+    } 
+
+} 
 
 ?>
