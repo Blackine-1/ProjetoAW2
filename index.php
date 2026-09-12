@@ -2,6 +2,7 @@
 require_once "personagens/jogador.php"; 
 
 session_start();
+
 if($_SERVER['REQUEST_METHOD'] == "POST"){
 
     if($_POST['nome'] == 'luis') {
@@ -10,27 +11,38 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     else {
         $_SESSION["jogador"] = new jogador ($_POST['nome'],$_POST['genero'], 100, 10);
     }
+    $_SESSION["jogador"] = new jogador($_POST['nome'],$_POST['genero'], 100, 10);
     header("Location: labirinto.php");
     exit();
 };
-
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Labirinto</title>
 </head>
 <body>
-    <form method="POST">
-        <input type="text" name="nome" placeholder="Insira seu nome"><br>
-        <label><input type="radio" name="genero" value="masculino">masculino</label>
-        <label><input type="radio" name="genero" value="feminino">feminino</label><br>
-        <input type="submit">
-        <input type="reset">
-    </form><br>
+    <div class="inicio">
+        <h1>Labirinto das aleatoriedades</h1>
+        <p>Crie seu personagem:</p>
+        <form method="POST">
+            <input 
+                type="text" 
+                name="nome" 
+                placeholder="Nome"
+                required
+            >
+            <br>
+            <label><input type="radio" name="genero" value="masculino" required>Masculino</label>
+            <label><input type="radio" name="genero" value="feminino">Feminino</label>
+            <br>
+            <input type="submit" value="Iniciar">
+            <input type="reset" value="Limpar">
+</form>
 
-    <a href="teste.php">teste</a>
+    </div>
 </body>
 </html>
