@@ -3,7 +3,13 @@ require_once "personagens/jogador.php";
 
 session_start();
 if($_SERVER['REQUEST_METHOD'] == "POST"){
-    $_SESSION["jogador"] = new jogador ($_POST['nome'],$_POST['genero'], 100, 10);
+
+    if($_POST['nome'] == 'luis') {
+        $_SESSION["jogador"] = new jogador ($_POST['nome'],$_POST['genero'], 1000,50);
+    }
+    else {
+        $_SESSION["jogador"] = new jogador ($_POST['nome'],$_POST['genero'], 100, 10);
+    }
     header("Location: labirinto.php");
     exit();
 };

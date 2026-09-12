@@ -1,3 +1,12 @@
+<?php
+require_once 'personagens/jogador.php';
+session_start();
+$salas = [7,8,9,10,11,12,15,17,18,19,20];
+
+$jogador = $_SESSION['jogador'];
+$jogador->liberarSala(11);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,36 +17,25 @@
 </head>
 <body>
     <div class="labirinto">
-        <div class="esconder"></div>
-        <div class="esconder"></div>
-        <div class="esconder"></div>
-        <div class="esconder"></div>
-        <div class="esconder"></div>
+        <?php
 
-        <div class="esconder"></div>
-        <div ></div>
-        <div ></div>
-        <div ></div>
-        <div ></div>
+        for($i = 1; $i <= 25; $i++){
 
-        <a href="dados.php"><div ></div></a>     
-        <div ></div>
-        <div class="esconder"></div>
-        <div class="esconder"></div>
-        <div ></div>
+            if(in_array($i, $salas)){
 
-        <div class="esconder"></div>
-        <div ></div>
-        <div ></div>
-        <div ></div>
-        <div ></div>
+                echo "<a href='dados.php?sala=$i'>";
+                echo "<div></div>";
+                echo "</a>";
 
-        <div class="esconder"></div>
-        <div class="esconder"></div>
-        <div class="esconder"></div>
-        <div class="esconder"></div>
-        <div class="esconder"></div>
-    
+            } else {
+
+                echo "<div class='esconder'></div>";
+
+            }
+
+        }
+
+        ?>
     </div>
 </body>
 </html>

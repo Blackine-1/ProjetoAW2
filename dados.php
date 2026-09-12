@@ -1,16 +1,35 @@
 <?php
+require_once 'personagens/jogador.php';
 session_start();
-$_SESSION['tipodesafio'] = rand(1,3);
 
-if ($_SESSION['tipodesafio'] == 1){
+$jogador = $_SESSION['jogador'];
+
+$sala = $_GET['sala'];
+
+if (!in_array($sala, $jogador->getSalas())) {
+    header("Location: labirinto.php");
+    exit;
+}
+
+$_SESSION['tipodesafio'] = rand(1, 3);
+
+if ($_SESSION['tipodesafio'] == 1) {
+
     header("Location: salas/combate.php");
     exit;
+
 }
-if ($_SESSION['tipodesafio'] == 2){
+elseif ($_SESSION['tipodesafio'] == 2) {
+
     header("Location: salas/armadilha.php");
     exit;
+
 }
 else {
-    header("location: salas/SalaBau.php");
+
+    header("Location: salas/SalaBau.php");
+    exit;
+
 }
+
 ?>

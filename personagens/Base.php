@@ -56,6 +56,10 @@ class base {
         return $this->dano; 
     } 
 
+    function setVida($valor){
+    $this->vida_atual = $valor;
+    $this->morto = false;
+}
 } 
 
 ?>

@@ -1,7 +1,8 @@
 <?php 
 
-require_once "personagens/base.php"; 
+require_once "base.php"; 
 require_once "itens.php"; 
+require_once "consumiveis.php";
 
 class jogador extends base { 
 
@@ -35,7 +36,6 @@ class jogador extends base {
         $this->genero = $genero; 
     } 
 
-
     function getNome() { 
 
         return $this->nome; 
@@ -53,6 +53,15 @@ class jogador extends base {
         return $this->SalasLiberadas; 
     } 
 
+    function setSalas($salas){
+        $this->SalasLiberadas = $salas;
+    }
+
+    function liberarSala($sala) {
+    if (!in_array($sala, $this->SalasLiberadas)) {
+        $this->SalasLiberadas[] = $sala;
+        }
+    }
 
     function getInventario() { 
 
@@ -135,6 +144,21 @@ class jogador extends base {
         } 
     } 
 
-} 
+    function beberPocao($consumivel){
+        $cura = $consumivel->getCura();
+        $this->vida_atual += $cura;
 
+        if($this->vida_atual > $this->vida_maxima){
+            $this->vida_atual = $this->vida_maxima;
+        }
+
+        $chave = array_search($consumivel, $this->inventario, true);
+
+        if ($chave !== false) {
+        unset($this->inventario[$chave]);
+        $this->inventario = array_values($this->inventario);
+    }
+
+    } 
+}
 ?>
