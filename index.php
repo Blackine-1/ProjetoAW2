@@ -23,18 +23,19 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Labirinto</title>
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-    <div class="inicio">
+         <img src='imagens/guerreiropngindex.png' id='heroi'>
+
+        <div class="hud">
+            
         <h1>Labirinto das aleatoriedades</h1>
-        <p>Crie seu personagem:</p>
+        <h3>Crie seu personagem:</h3>
+
         <form method="POST">
             <input 
-                type="text" 
-                name="nome" 
-                placeholder="Nome"
-                required
-            >
+                type="text"name="nome" placeholder="Nome"required>
             <br>
             <label><input type="radio" name="genero" value="masculino" required>Masculino</label>
             <label><input type="radio" name="genero" value="feminino">Feminino</label>
@@ -42,7 +43,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             <input type="submit" value="Iniciar">
             <input type="reset" value="Limpar">
 </form>
+</div>
 
-    </div>
+   
 </body>
 </html>
