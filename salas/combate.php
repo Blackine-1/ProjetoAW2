@@ -3,13 +3,16 @@
 require_once "../personagens/inimigos.php";    
 require_once "../personagens/jogador.php";    
 require_once "../personagens/gerainimigo.php";    
+require_once "../funcoes/funcoes.php";
   
 session_start();    
   
 $jogador = $_SESSION['jogador'];    
 $vitoria = false;  
 $derrotado = false;
-  
+
+
+
 if(!isset($_SESSION['turno'])){  
     $_SESSION['turno'] = "jogador"; 
 }  
@@ -34,7 +37,11 @@ if($_SESSION['turno'] == "jogador"){
   
             unset($_SESSION['inimigo']);   
             $vitoria = true;  
-  
+
+            $sala = $_SESSION['SalaAtual'];
+            liberarProximasSalas($jogador, $sala);
+            $_SESSION['jogador'] = $jogador;
+
         } else {  
   
             $_SESSION['turno'] = "inimigo";  

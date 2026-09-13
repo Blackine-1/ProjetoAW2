@@ -9,7 +9,7 @@ class jogador extends base {
     protected string $genero; 
 
     protected int $dano_base; 
-
+    protected array $SalasVisitadas = [];
     protected array $SalasLiberadas = []; 
 
     protected array $inventario = []; 
@@ -60,8 +60,8 @@ class jogador extends base {
     function liberarSala($sala) {
     if (!in_array($sala, $this->SalasLiberadas)) {
         $this->SalasLiberadas[] = $sala;
-        }
     }
+}
 
     function getInventario() { 
 

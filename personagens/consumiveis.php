@@ -8,7 +8,7 @@ class consumivel {
         $this->cura = $cura;
 
     }
-
+    
     function getCura(){
         return $this->cura;
     }

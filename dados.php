@@ -1,10 +1,14 @@
 <?php
 require_once 'personagens/jogador.php';
+require_once "funcoes/funcoes.php";
 session_start();
 
 $jogador = $_SESSION['jogador'];
 
+$_SESSION['SalaAtual'] = $_GET['sala'];
+
 $sala = $_GET['sala'];
+
 
 if (!in_array($sala, $jogador->getSalas())) {
     header("Location: labirinto.php");
