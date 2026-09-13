@@ -1,0 +1,45 @@
+body   {
+    background-image: url(../imagens/dungeonindexoriginal.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    
+    
+}
+
+    
+#heroi {
+    width: 33.5%;
+    float: right ;
+    
+    
+}  
+    
+
+ 
+
+@font-face {
+  font-family: 'Gothica'; /* set name */
+  src: url(../Fontes/Ancient\ Medium.ttf); /* url of the font */
+}
+
+.hud {
+    font-family: 'Gothica';
+    font-size: 100%;
+    color: goldenrod;
+    width: 50%;
+    height: 700px;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    
+    justify-content: center;
+    background-image: url(../imagens/fundotesteindex.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: 0%;
+    
+}   
+.hud h1, h3, label{
+    margin: 5px 0;
+    line-height: 1.2;
+}
