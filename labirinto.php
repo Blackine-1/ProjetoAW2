@@ -16,6 +16,7 @@ $jogador->liberarSala(11);
     <link rel="stylesheet" href="css/labirinto.css">
 </head>
 <body>
+    
     <div class="labirinto">
         <?php
 

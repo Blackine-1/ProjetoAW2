@@ -2,6 +2,14 @@
     box-sizing: border-box;
 }
 
+@font-face {
+  font-family: 'Gothica'; /* set name */
+  src: url(../Fontes/Ancient\ Medium.ttf); /* url of the font */
+}
+
+
+   
+
 body {
     margin: 0;
     min-height: 100vh;
@@ -10,34 +18,40 @@ body {
     justify-content: center;
     align-items: center;
 
-    font-family: Arial, sans-serif;
-
-    background-color: #1b1b1b;
-    color: white;
+    font-family: 'Gothica';
+    font-size: larger;
+    color: goldenrod;
+    background-image: url(../imagens/paredearmadilha.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: 0%;
+    
 }
 
 /* Armadilha */
 
 .armadilha {
-    width: 90%;
-    max-width: 700px;
+    width: 100%;
+    max-width: 2000px;
 
-    padding: 40px;
-
+    padding: 100px;
+    margin-top: auto;
     text-align: center;
-
-    background-color: #292929;
-
-    border: 2px solid #555;
-    border-radius: 12px;
-
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    color: green;
+    
+    background-image: url(../imagens/fundoDECarmadilha.png);
+    background-repeat: no-repeat;       
+    background-size: 70%;
+    background-position: 50% 40%;
+    
+    
+   
 }
 
 .armadilha h1 {
-    margin: 0 0 30px;
+    margin: 0 0 20px;
 
-    font-size: 40px;
+    font-size: 100px;
 }
 
 .armadilha form {
@@ -45,12 +59,12 @@ body {
     justify-content: center;
     align-items: center;
 
-    gap: 15px;
+    gap: 7px;
     flex-wrap: wrap;
 }
 
 .armadilha button {
-    min-width: 160px;
+    min-width: 275px;
 
     padding: 14px 20px;
 
@@ -60,8 +74,9 @@ body {
     border: 1px solid #666;
     border-radius: 8px;
 
-    font-size: 16px;
-    font-weight: bold;
+    font-family: "Gothica";
+    font-size: 25px;
+
 
     cursor: pointer;
 
@@ -98,13 +113,14 @@ body {
 
 .resultado h1 {
     margin: 0 0 15px;
-
-    font-size: 40px;
+    
+    font-size: 70px;
+    color: white;
 }
 
 .resultado p {
     margin: 0;
 
     color: #ccc;
-    font-size: 18px;
+    font-size: 28px;
 }

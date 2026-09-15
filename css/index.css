@@ -24,8 +24,8 @@ body   {
 
 .hud {
     font-family: 'Gothica';
-    font-size: 100%;
-    color: goldenrod;
+    font-size: 150%;
+    color: rgb(235, 204, 128);
     width: 50%;
     height: 700px;
     display: flex;
