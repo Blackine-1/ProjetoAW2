@@ -1,7 +1,6 @@
 <?php
-require_once 'personagens/jogador.php';
-require_once "funcoes/funcoes.php";
-session_start();
+require_once "config.php";
+if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 
 $jogador = $_SESSION['jogador'];
 

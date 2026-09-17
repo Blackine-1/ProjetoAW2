@@ -1,6 +1,6 @@
 <?php
 
-require_once "inimigos.php";
+
 
 class gerador {
     private array $nomes = [

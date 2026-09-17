@@ -1,16 +1,13 @@
 
 <?php    
-require_once "../personagens/inimigos.php";    
-require_once "../personagens/jogador.php";    
-require_once "../personagens/gerainimigo.php";    
-require_once "../funcoes/funcoes.php";
+require_once "../config.php";
   
-session_start();    
+if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}   
   
 $jogador = $_SESSION['jogador'];    
 $vitoria = false;  
 $derrotado = false;
-
+$inventarioaberto = false;
 
 
 if(!isset($_SESSION['turno'])){  
@@ -59,7 +56,15 @@ if($_SESSION['turno'] == "jogador"){
         unset($_SESSION['inimigo']);    
         header("Location: ../labirinto.php");    
         exit;    
-    }     
+    }  
+
+    if(isset($_POST['acao']) && $_POST['acao'] ==  'inventario'){
+        $inventarioaberto = true;
+    }
+
+    if(isset($_POST['acao']) && $_POST['acao'] ==  'fecharinventario'){
+        $inventarioaberto = false;
+    }
 }  
   
 if($_SESSION['turno'] == "inimigo"){  
@@ -116,7 +121,7 @@ if($_SESSION['turno'] == "inimigo"){
   
   
 <body>   
-  
+    <?php if($inventarioaberto == false) {?>
     <main class="combate">   
   
   
@@ -207,8 +212,13 @@ if($_SESSION['turno'] == "inimigo"){
         <script> 
             turnoInimigo(); 
         </script> 
-    <?php } ?> 
-  
+    <?php } 
+    } 
+    if($inventarioaberto == true){
+        inventario($jogador);
+    }
+    ?> 
+
 </body>   
 </html>
 

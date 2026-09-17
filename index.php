@@ -1,11 +1,21 @@
 <?php
-require_once "personagens/jogador.php"; 
-session_start();
+require_once "config.php";
+if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
 
     if($_POST['nome'] == 'luis') {
         $_SESSION["jogador"] = new jogador ($_POST['nome'],$_POST['genero'], 1000,70);
+        $jogador = $_SESSION["jogador"];
+
+        $espada = new Arma("Espada de Teste", 20, "Comum");
+        $elmo = new armadura("Elmo de Teste", "cabeca", 30, "Raro");
+        $pocao = new consumivel("Poção de Teste", 25, "Épico");
+
+        $jogador->colocaItem($espada);
+        $jogador->colocaItem($elmo);
+        $jogador->colocaItem($pocao);
+
     }
     else {
         $_SESSION["jogador"] = new jogador ($_POST['nome'],$_POST['genero'], 100, 10);

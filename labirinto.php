@@ -1,11 +1,18 @@
 <?php
-require_once 'personagens/jogador.php';
-session_start();
+require_once "config.php";
+if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 $salas = [7,8,9,10,11,12,15,17,18,19,20];
 
 $jogador = $_SESSION['jogador'];
 $jogador->liberarSala(11);
+$inventarioaberto = false;
 
+    if(isset($_POST['acao']) && $_POST['acao'] ==  'fecharinventario'){
+        $inventarioaberto = false;
+    }
+    if(isset($_POST['acao']) && $_POST['acao'] ==  'inventario'){
+        $inventarioaberto = true;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,27 +23,41 @@ $jogador->liberarSala(11);
     <link rel="stylesheet" href="css/labirinto.css">
 </head>
 <body>
-    
+    <?php if($inventarioaberto == false){ ?>
     <div class="labirinto">
-        <?php
+        
+        <?php 
+            for($i = 1; $i <= 25; $i++){
 
-        for($i = 1; $i <= 25; $i++){
+                if(in_array($i, $salas)){
 
-            if(in_array($i, $salas)){
+                    echo "<a href='dados.php?sala=$i'>";
+                    echo "<div></div>";
+                    echo "</a>";
 
-                echo "<a href='dados.php?sala=$i'>";
-                echo "<div></div>";
-                echo "</a>";
+                } else {
 
-            } else {
+                    echo "<div class='esconder'></div>";
 
-                echo "<div class='esconder'></div>";
+                }
 
             }
-
+            ?>
+            <form method="POST">
+            <button type="submit" name="acao" value="inventario">  
+                        Inventário  
+            </button>
+        </form>
+       <?php } ?>
+        <?php
+        if($inventarioaberto == true){
+            inventario($jogador);
         }
-
         ?>
+
     </div>
+
+
+    
 </body>
 </html>

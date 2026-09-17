@@ -1,6 +1,5 @@
 <?php 
 
-require_once "../personagens/base.php"; 
 
 class inimigo extends base {
     private string $classeVida;

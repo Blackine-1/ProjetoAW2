@@ -1,9 +1,7 @@
 <?php 
-require_once "../personagens/inimigos.php";     
-require_once "../personagens/jogador.php";    
-require_once "../funcoes/funcoes.php"; 
+require_once "../config.php";
 
-session_start(); 
+if (session_status() !== PHP_SESSION_ACTIVE) {session_start();} 
 
 $chance = rand(1, 100); 
 $chance2 = rand(1, 100); 
