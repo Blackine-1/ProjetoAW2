@@ -1,6 +1,7 @@
 
 <?php    
 require_once "../config.php";
+require_once "../funcoes/inventario.php";
   
 if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}   
   
@@ -106,6 +107,7 @@ if($_SESSION['turno'] == "inimigo"){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">   
   
     <link rel="stylesheet" href="../css/combate.css">   
+    <link rel="stylesheet" href="../css/inventario.css">
     <script src="../js/combate.js"></script> 
 
     <title>Combate</title>   
