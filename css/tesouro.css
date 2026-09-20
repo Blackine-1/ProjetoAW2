@@ -1,0 +1,121 @@
+
+
+@font-face {
+    font-family: 'Gothica';
+    src: url(../Fontes/Ancient\ Medium.ttf);
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    font-family: 'Gothica';
+    font-size: larger;
+
+    color: goldenrod;
+
+    background-image: url(../imagens/tijolodourado.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: 0%;
+}
+
+
+body > h1 {
+    position: absolute;
+    top: 50px;
+    margin: 0;
+    font-size: 80px;
+    color: goldenrod;
+    text-shadow:
+        3px 3px 0 #222,
+        0 0 10px rgba(218, 165, 32, 0.4);
+}
+
+
+
+
+
+main {
+    width: 100%;
+    max-width: 1000px;
+
+    padding: 80px;
+
+    text-align: center;
+
+    background-image: url(../imagens/fundotesouro.png);
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: center;
+}
+
+
+main > h1 {
+    margin: 0 0 20px;
+    font-size: 70px;
+    color: goldenrod;
+}
+main p {
+    margin: 0;
+
+    color: goldenrod;
+
+    font-size: 28px;
+}
+
+
+
+
+
+
+
+.acoes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.acoes form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.acoes button {
+    min-width: 120px;
+    padding: 14px 20px;
+    background-color: rgb(119, 69, 3);
+    color: white;
+    border: 1px solid rgb(136, 29, 29);
+    border-radius: 8px;
+
+    font-family: "Gothica";
+    font-size: 25px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.acoes button:hover {
+    background-color: rgb(119, 69, 3);
+
+    transform: translateY(-2px);
+}
+.acoes button:active {
+    transform: translateY(0);
+}
+
+.acoes p {
+    padding: 10px 20px;
+
+    background-color: rgb(43, 25, 1);
+    border: 2px solid rgb(136, 29, 29);
+    border-radius: 8px;
+    color: rgb(128, 128, 128);
+    font-size: 24px;
+}
+
+

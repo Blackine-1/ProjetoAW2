@@ -11,7 +11,11 @@ function inventario($jogador) {
     $itens = $jogador->getInventario();  
     $equipamentos = $jogador->getEquipamentos();
 
+<<<<<<< HEAD
     echo "<div class='seguratuti'>"; 
+=======
+    echo "<div class='seguratuti'>";
+>>>>>>> d883c318f227af299450e5d99bc07c60b967da25
     
     echo "<form method='POST'>
             <button type='submit' name='acao' value='fecharinventario'>Fechar</button>

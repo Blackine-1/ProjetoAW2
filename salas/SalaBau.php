@@ -1,6 +1,7 @@
 <?php 
 
 require_once "../config.php"; 
+require_once "../funcoes/inventario.php";
 
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
@@ -82,6 +83,8 @@ if (isset($_POST['acao']) && $_POST['acao'] == 'sair') {
     <?php } ?>   
 
     <title>Sala dos Tesouros</title> 
+    <link rel="stylesheet" href="../css/tesouro.css">
+    <link rel="stylesheet" href="../css/inventario.css">
 </head> 
 
 <body> 
