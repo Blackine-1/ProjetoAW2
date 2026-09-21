@@ -1,15 +1,309 @@
-.labirinto {
-    display: grid;
-    grid-template-columns: repeat(5, 80px);
-    grid-template-rows: repeat(5, 80px);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.labirinto div {
-    border: 1px solid white;
-    width: 80px;
-    height: 80px;
+body {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #c9b48a;
+
+    font-family: Georgia, serif;
+
+    overflow-x: hidden;
+}
+
+.labirinto {
+    position: relative;
+
+    width: min(90vw, 900px);
+    height: min(80vh, 650px);
+
+    background-color: #dfc99b;
+
+    border: 8px solid #6b583c;
+    border-radius: 5px;
+
+    box-shadow:
+        0 8px 20px #3f321f88,
+        inset 0 0 40px #6b583c55;
+}
+
+.labirinto a,
+.labirinto > div:not(.caminho) {
+    position: absolute;
+
+    width: 46px;
+    height: 46px;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 2;
+}
+
+.sala-liberada,
+.sala-bloqueada {
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    border: 4px solid #6b583c;
+
+    font-weight: bold;
+    font-size: 16px;
+
+    color: #493a2a;
+}
+
+.sala-liberada {
+    background-color: #d8bd7a;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.sala-liberada:hover {
+    transform: scale(1.15);
+
+    background-color: #ead49a;
+
+    box-shadow: 0 0 12px #5a4528aa;
+}
+
+.sala-bloqueada {
+    background-color: #8c7a5d;
+
+    opacity: 0.5;
 }
 
 .esconder {
-    visibility : hidden;
+    display: none;
+}
+
+.caminho {
+    position: absolute;
+
+    background-color: #8b7654;
+
+    border-radius: 5px;
+
+    z-index: 1;
+}
+
+.caminho-11-12 {
+    width: 15%;
+    height: 7px;
+
+    left: 15%;
+    top: 50%;
+}
+
+.caminho-12-7 {
+    width: 7px;
+    height: 30%;
+
+    left: 30%;
+    top: 20%;
+}
+
+.caminho-7-8 {
+    width: 15%;
+    height: 7px;
+
+    left: 30%;
+    top: 20%;
+}
+
+.caminho-8-9 {
+    width: 15%;
+    height: 7px;
+
+    left: 45%;
+    top: 20%;
+}
+
+.caminho-9-10 {
+    width: 15%;
+    height: 7px;
+
+    left: 60%;
+    top: 20%;
+}
+
+.caminho-10-15 {
+    width: 7px;
+    height: 30%;
+
+    left: 75%;
+    top: 20%;
+}
+
+.caminho-12-17 {
+    width: 7px;
+    height: 30%;
+
+    left: 30%;
+    top: 50%;
+}
+
+.caminho-17-18 {
+    width: 15%;
+    height: 7px;
+
+    left: 30%;
+    top: 80%;
+}
+
+.caminho-18-19 {
+    width: 15%;
+    height: 7px;
+
+    left: 45%;
+    top: 80%;
+}
+
+.caminho-19-20 {
+    width: 15%;
+    height: 7px;
+
+    left: 60%;
+    top: 80%;
+}
+
+.caminho-20-15 {
+    width: 7px;
+    height: 30%;
+
+    left: 75%;
+    top: 50%;
+}
+
+.sala-11 {
+    left: 15%;
+    top: 50%;
+}
+
+.sala-12 {
+    left: 30%;
+    top: 50%;
+}
+
+.sala-7 {
+    left: 30%;
+    top: 20%;
+}
+
+.sala-8 {
+    left: 45%;
+    top: 20%;
+}
+
+.sala-9 {
+    left: 60%;
+    top: 20%;
+}
+
+.sala-10 {
+    left: 75%;
+    top: 20%;
+}
+
+.sala-15 {
+    left: 75%;
+    top: 50%;
+}
+
+.sala-20 {
+    left: 75%;
+    top: 80%;
+}
+
+.sala-17 {
+    left: 30%;
+    top: 80%;
+}
+
+.sala-18 {
+    left: 45%;
+    top: 80%;
+}
+
+.sala-19 {
+    left: 60%;
+    top: 80%;
+}
+
+.labirinto form {
+    position: absolute;
+
+    bottom: 25px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 3;
+}
+
+.labirinto button {
+    padding: 12px 30px;
+
+    font-family: Georgia, serif;
+    font-size: 18px;
+
+    color: #493a2a;
+
+    background-color: #d8bd7a;
+
+    border: 2px solid #6b583c;
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.labirinto button:hover {
+    background-color: #ead49a;
+
+    transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+
+    .labirinto {
+        width: 95vw;
+        height: 80vh;
+    }
+
+    .labirinto a,
+    .labirinto > div:not(.caminho) {
+        width: 36px;
+        height: 36px;
+    }
+
+    .sala-liberada,
+    .sala-bloqueada {
+        width: 36px;
+        height: 36px;
+
+        font-size: 12px;
+
+        border-width: 3px;
+    }
+
+    .labirinto button {
+        font-size: 15px;
+        padding: 10px 20px;
+    }
 }

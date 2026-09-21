@@ -10,5 +10,7 @@ require_once __DIR__ . "/funcoes/funcoes.php";
 require_once __DIR__ . "/funcoes/inventario.php";
 require_once __DIR__ . "/funcoes/gerainimigo.php";
 require_once __DIR__ . "/funcoes/artifice.php";
-
+require_once __DIR__ . "/funcoes/geradorboss.php";
+require_once __DIR__ . "/dbconfig.php";
+require_once __DIR__ . "/funcoes/ranking.php";
 ?>

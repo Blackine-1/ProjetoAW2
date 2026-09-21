@@ -8,6 +8,7 @@ function liberarProximasSalas($jogador, $sala) {
         7  => [8],
         8  => [9],
         9  => [10],
+        10 => [15],
         17 => [18],
         18 => [19],
         19 => [20],

@@ -23,7 +23,6 @@ if (
     $_SESSION['combate_sala'] != $_SESSION['SalaAtual']
 ) {
     unset($_SESSION['inimigo']);
-    unset($_SESSION['drop']);
     unset($_SESSION['turno']);
     unset($_SESSION['cdforte']);
     unset($_SESSION['combate_finalizado']);
@@ -55,6 +54,7 @@ if (
         $item = $itensInventario[$indice];
 
         if ($_POST['acao'] == 'equipar') {
+
             $jogador->equiparItem($item, $indice);
 
         } elseif ($_POST['acao'] == 'usar') {
@@ -88,6 +88,7 @@ if (
     isset($_POST['acao']) &&
     $_POST['acao'] == 'inventario'
 ) {
+
     $inventarioaberto = true;
 }
 
@@ -95,30 +96,8 @@ if (
     isset($_POST['acao']) &&
     $_POST['acao'] == 'fecharinventario'
 ) {
+
     $inventarioaberto = false;
-}
-
-if (
-    isset($_POST['acao']) &&
-    $_POST['acao'] == 'pegar_drop'
-) {
-
-    if (
-        isset($_SESSION['drop']) &&
-        $_SESSION['drop'] != null
-    ) {
-
-        $jogador->colocaItem($_SESSION['drop']);
-
-        $sala = $_SESSION['SalaAtual'];
-
-        liberarProximasSalas($jogador, $sala);
-
-        $_SESSION['jogador'] = $jogador;
-
-        header("Location: ../labirinto.php");
-        exit;
-    }
 }
 
 if (!isset($_SESSION['turno'])) {
@@ -134,17 +113,9 @@ if (
     $_SESSION['combate_finalizado'] == false
 ) {
 
-    $gerador = new gerador();
+    $gerador = new geradorboss();
 
     $_SESSION['inimigo'] = $gerador->gerar();
-
-    $artifice = new artifice();
-
-    if (rand(1, 100) <= 30) {
-        $_SESSION['drop'] = $artifice->gerar();
-    } else {
-        $_SESSION['drop'] = null;
-    }
 
     $_SESSION['cdforte'] = 0;
 }
@@ -157,13 +128,7 @@ if (
 ) {
 
     $vitoria = true;
-
-    if (
-        !isset($_SESSION['drop']) ||
-        $_SESSION['drop'] == null
-    ) {
-        $redirecionar = true;
-    }
+    $redirecionar = true;
 }
 
 if (
@@ -182,25 +147,16 @@ if (
 
         if ($inimigo->getmorto() == true) {
 
+            finalizarRanking($jogador);
+
             unset($_SESSION['inimigo']);
 
             $_SESSION['jogador'] = $jogador;
-
-            $sala = $_SESSION['SalaAtual'];
-
-            liberarProximasSalas($jogador, $sala);
-
             $_SESSION['turno'] = "jogador";
             $_SESSION['combate_finalizado'] = true;
 
             $vitoria = true;
-
-            if (
-                !isset($_SESSION['drop']) ||
-                $_SESSION['drop'] == null
-            ) {
-                $redirecionar = true;
-            }
+            $redirecionar = true;
 
         } else {
 
@@ -208,7 +164,7 @@ if (
             $_SESSION['jogador'] = $jogador;
             $_SESSION['inimigo'] = $inimigo;
 
-            header("Location: combate.php");
+            header("Location: boss.php");
             exit;
         }
     }
@@ -230,25 +186,16 @@ if (
 
             if ($inimigo->getmorto() == true) {
 
+                finalizarRanking($jogador);
+
                 unset($_SESSION['inimigo']);
 
                 $_SESSION['jogador'] = $jogador;
-
-                $sala = $_SESSION['SalaAtual'];
-
-                liberarProximasSalas($jogador, $sala);
-
                 $_SESSION['turno'] = "jogador";
                 $_SESSION['combate_finalizado'] = true;
 
                 $vitoria = true;
-
-                if (
-                    !isset($_SESSION['drop']) ||
-                    $_SESSION['drop'] == null
-                ) {
-                    $redirecionar = true;
-                }
+                $redirecionar = true;
 
             } else {
 
@@ -256,26 +203,10 @@ if (
                 $_SESSION['jogador'] = $jogador;
                 $_SESSION['inimigo'] = $inimigo;
 
-                header("Location: combate.php");
+                header("Location: boss.php");
                 exit;
             }
         }
-    }
-
-    if (
-        isset($_POST['acao']) &&
-        $_POST['acao'] == 'fugir'
-    ) {
-
-        unset($_SESSION['inimigo']);
-        unset($_SESSION['drop']);
-        unset($_SESSION['turno']);
-        unset($_SESSION['cdforte']);
-        unset($_SESSION['combate_finalizado']);
-        unset($_SESSION['combate_sala']);
-
-        header("Location: ../labirinto.php");
-        exit;
     }
 }
 
@@ -297,7 +228,6 @@ if (
 
             unset($_SESSION['jogador']);
             unset($_SESSION['inimigo']);
-            unset($_SESSION['drop']);
             unset($_SESSION['turno']);
             unset($_SESSION['desafios']);
             unset($_SESSION['inicio']);
@@ -309,6 +239,7 @@ if (
             unset($_SESSION['cdforte']);
             unset($_SESSION['combate_finalizado']);
             unset($_SESSION['combate_sala']);
+            unset($_SESSION['ranking_salvo']);
 
             $derrotado = true;
 
@@ -322,7 +253,7 @@ if (
             $_SESSION['inimigo'] = $inimigo;
             $_SESSION['turno'] = "jogador";
 
-            header("Location: combate.php");
+            header("Location: boss.php");
             exit;
         }
     }
@@ -348,7 +279,7 @@ if (
 
     <?php if ($redirecionar) { ?>
 
-        <meta http-equiv="refresh" content="2;url=../labirinto.php">
+        <meta http-equiv="refresh" content="2;url=sala.php">
 
     <?php } ?>
 
@@ -358,7 +289,7 @@ if (
 
     <?php } ?>
 
-    <title>Combate</title>
+    <title>Boss</title>
 
 </head>
 
@@ -370,59 +301,9 @@ if (
 
             <?php if ($vitoria) { ?>
 
-                <h1>Você venceu!</h1>
+                <h1>Você derrotou o boss!</h1>
 
-                <?php if (
-                    isset($_SESSION['drop']) &&
-                    $_SESSION['drop'] != null
-                ) { ?>
-
-                    <h2>O inimigo deixou um item!</h2>
-
-                    <p>
-                        <?php echo $_SESSION['drop']->getNome(); ?>
-                    </p>
-
-                    <p>
-                        Raridade:
-                        <?php echo $_SESSION['drop']->getRaridade(); ?>
-                    </p>
-
-                    <?php if ($_SESSION['drop'] instanceof Arma) { ?>
-
-                        <p>
-                            +<?php echo $_SESSION['drop']->getDano(); ?> dano
-                        </p>
-
-                    <?php } elseif ($_SESSION['drop'] instanceof armadura) { ?>
-
-                        <p>
-                            +<?php echo $_SESSION['drop']->getVidaExtra(); ?> vida
-                        </p>
-
-                    <?php } elseif ($_SESSION['drop'] instanceof consumivel) { ?>
-
-                        <p>
-                            +<?php echo $_SESSION['drop']->getCura(); ?> vida
-                        </p>
-
-                    <?php } ?>
-
-                    <form method="POST">
-
-                        <button type="submit" name="acao" value="pegar_drop">
-                            Pegar item
-                        </button>
-
-                    </form>
-
-                <?php } else { ?>
-
-                    <p>O inimigo não deixou nenhum item.</p>
-
-                    <p>Voltando para o labirinto...</p>
-
-                <?php } ?>
+                <p>Voltando...</p>
 
             <?php } elseif ($derrotado) { ?>
 
@@ -502,6 +383,7 @@ if (
                                 echo "disabled";
                             } ?>
                         >
+
                             Ataque forte
 
                             <?php if ($_SESSION['cdforte'] > 0) { ?>
@@ -518,14 +400,6 @@ if (
                             value="inventario"
                         >
                             Inventário
-                        </button>
-
-                        <button
-                            type="submit"
-                            name="acao"
-                            value="fugir"
-                        >
-                            Fugir
                         </button>
 
                     </form>

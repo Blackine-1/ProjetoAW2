@@ -1,107 +1,190 @@
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
-    background-color: #1b1b1b;
-    color: white;
-}
-
-.combate {
-    width: 90%;
-    max-width: 1000px;
-    margin: 40px auto;
-}
-
-/* =========================
-   PERSONAGENS
-   ========================= */
-
-.personagens {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 40px;
-}
-
-.jogador,
-.inimigo {
-    width: 45%;
-    padding: 25px;
-    text-align: center;
-    background-color: #292929;
-    border: 2px solid #555;
-    border-radius: 12px;
-}
-
-.jogador img,
-.inimigo img {
-    width: 220px;
-    height: 220px;
-    object-fit: contain;
-}
-
-.jogador p,
-.inimigo p {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 15px 0 0;
-}
-
-
-/* =========================
-   AÇÕES
-   ========================= */
-
-.acoes {
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-}
-
-.acoes form {
-    display: flex;
-    gap: 15px;
-}
-
-.acoes button {
-    width: 150px;
-    padding: 15px;
-    font-size: 17px;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.acoes button:hover {
-    opacity: 0.8;
-}
-
-
-/* =========================
-   MENSAGEM
-   ========================= */
-
-.combate > h1,
-.combate > p {
-    text-align: center;
-}
-
-
-/* =========================
-   VITÓRIA
-   ========================= */
-
-.combate > h1 {
-    margin-top: 30vh;
-    font-size: 50px;
-}
-
-.combate > h1 + p {
-    font-size: 20px;
-    color: #ccc;
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+} 
+ 
+body { 
+    min-height: 100vh; 
+    font-family: Georgia, serif; 
+    background-color: #e8d8b8; 
+    color: #493a2a; 
+} 
+ 
+.combate { 
+    width: 90%; 
+    max-width: 1200px; 
+    margin: auto; 
+    padding: 35px 0; 
+    text-align: center; 
+} 
+ 
+.combate h1 { 
+    margin-bottom: 20px; 
+    font-size: 40px; 
+    color: #5a432d; 
+} 
+ 
+.personagens { 
+    position: relative; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    min-height: 360px; 
+    padding: 25px 50px; 
+    border: 3px solid #9b805b; 
+    border-radius: 15px; 
+    background-color: #ddc9a5; 
+    box-shadow: 
+        0 6px 15px #6b553333, 
+        inset 0 0 30px #b69b6b55; 
+} 
+ 
+.personagens::before { 
+    content: "⚔"; 
+    position: absolute; 
+    left: 50%; 
+    top: 50%; 
+    transform: translate(-50%, -50%); 
+    font-size: 55px; 
+    color: #8f7651; 
+    opacity: 0.45; 
+} 
+ 
+.jogador, 
+.inimigo { 
+    width: 35%; 
+    padding: 20px; 
+    border: 2px solid #9b805b; 
+    border-radius: 12px; 
+    background-color: #e8d8b8; 
+    box-shadow: 0 4px 8px #6b553333; 
+} 
+ 
+.jogador { 
+    border-left: 7px solid #8fa6a0; 
+} 
+ 
+.inimigo { 
+    border-right: 7px solid #a87870; 
+} 
+ 
+.jogador img, 
+.inimigo img { 
+    width: 220px; 
+    height: 260px; 
+    object-fit: contain; 
+} 
+ 
+.jogador p, 
+.inimigo p { 
+    margin-top: 12px; 
+    padding: 10px; 
+    border-top: 1px solid #9b805b; 
+    font-size: 19px; 
+    line-height: 1.5; 
+} 
+ 
+#mensagem { 
+    min-height: 35px; 
+    margin: 25px auto 10px; 
+    padding: 12px 20px; 
+    max-width: 700px; 
+ 
+    font-size: 22px; 
+    font-weight: bold; 
+ 
+    color: #493a2a; 
+    background-color: #f0dfbc; 
+ 
+    border: 2px solid #9b805b; 
+    border-radius: 8px; 
+} 
+ 
+.acoes { 
+    display: flex; 
+    justify-content: center; 
+    align-items: flex-start; 
+    gap: 30px; 
+    margin-top: 30px; 
+    padding: 25px; 
+    border: 2px solid #9b805b; 
+    border-radius: 12px; 
+    background-color: #d4c09b; 
+    box-shadow: 0 5px 12px #6b553333; 
+} 
+ 
+.acoes-gerais, 
+.acoes-combate { 
+    width: 250px; 
+    padding: 15px; 
+} 
+ 
+.acoes-gerais h2, 
+.acoes-combate h2 { 
+    margin-bottom: 15px; 
+    color: #5a432d; 
+    font-size: 23px; 
+} 
+ 
+.acoes-gerais form, 
+.acoes-combate form { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
+    width: 100%; 
+} 
+ 
+.acoes button { 
+    width: 100%; 
+    padding: 13px; 
+    font-family: Georgia, serif; 
+    font-size: 17px; 
+    color: #493a2a; 
+    background-color: #e8d8b8; 
+    border: 2px solid #9b805b; 
+    border-radius: 7px; 
+    cursor: pointer; 
+    transition: 0.2s; 
+} 
+ 
+.acoes button:hover { 
+    transform: translateY(-2px); 
+    background-color: #cdb98f; 
+    box-shadow: 0 4px 7px #6b553333; 
+} 
+ 
+.acoes button:disabled { 
+    cursor: not-allowed; 
+    opacity: 0.5; 
+    transform: none; 
+} 
+ 
+.vitoria { 
+    max-width: 900px; 
+    margin: 40px auto; 
+    padding: 40px; 
+    text-align: center; 
+    background-color: #ddc9a5; 
+    border: 3px solid #9b805b; 
+    border-radius: 15px; 
+    box-shadow: 0 6px 15px #6b553333; 
+} 
+ 
+.vitoria h1 { 
+    margin-bottom: 20px; 
+    font-size: 42px; 
+    color: #5a432d; 
+} 
+ 
+.vitoria img { 
+    max-width: 400px; 
+    margin: 25px 0; 
+} 
+ 
+.vitoria p { 
+    margin: 20px auto; 
+    line-height: 1.7; 
+    font-size: 18px; 
+    text-align: justify; 
 }

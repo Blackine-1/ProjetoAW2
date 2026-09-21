@@ -1,49 +1,105 @@
 <?php
 
-
-
 class gerador {
+
     private array $nomes = [
-    "Errante",
-    "Saqueador",
-    "Caçador",
-    "Mercenário",
-    "Renegado",
-    "Bandido",
-    "Soldado",
-    "Guerreiro",
-    "Desafiante",
-    "Ameaça"
-];
+        "Errante",
+        "Saqueador",
+        "Caçador",
+        "Mercenário",
+        "Renegado",
+        "Bandido",
+        "Soldado",
+        "Guerreiro",
+        "Desafiante",
+        "Ameaça",
+        "Vagante",
+        "Brutamontes",
+        "Combatente",
+        "Salteador",
+        "Perseguidor"
+    ];
+
+    private array $imagens = [
+        "token_1.png",
+        "token_2.png",
+        "token_3.png",
+        "token_4.png"
+    ];
+
     private array $classesVida = [
-        "Ínfimo"      => [1, 20],
-        "Menor"       => [21, 50],
-        "Comum"       => [51, 90],
-        "Superior"    => [91, 140],
-        "Maior"       => [141, 200],
-        "Excepcional" => [201, 260],
-        "Monstruoso"  => [261, 320],
-        "Titânico"    => [321, 350],
-        "Colossal"    => [351, 380],
-        "Abissal"     => [381, 400]
+        "Frágil",
+        "Resistente",
+        "Robusto",
+        "Fortificado",
+        "Colossal"
     ];
 
     private array $classesDano = [
-        "Iniciante"     => [1, 14],
-        "Intermediário" => [15, 34],
-        "Avançado"      => [35, 59],
-        "Santo"         => [60, 84],
-        "Rei"           => [85, 109],
-        "Imperador"     => [110, 129],
-        "Deus"          => [130, 149]
+        "Fraco",
+        "Agressivo",
+        "Perigoso",
+        "Brutal",
+        "Devastador"
     ];
 
+    private array $raridades = [
 
-    function descobrirClasse($valor, $classes) {
+        "Comum" => [
+            "chance" => 40,
+            "vida" => [40, 80],
+            "dano" => [5, 15]
+        ],
 
-        foreach ($classes as $nome => $limites) {
+        "Incomum" => [
+            "chance" => 25,
+            "vida" => [70, 110],
+            "dano" => [10, 20]
+        ],
 
-            if ($valor >= $limites[0] && $valor <= $limites[1]) {
+        "Raro" => [
+            "chance" => 15,
+            "vida" => [100, 150],
+            "dano" => [15, 25]
+        ],
+
+        "Épico" => [
+            "chance" => 10,
+            "vida" => [140, 200],
+            "dano" => [20, 30]
+        ],
+
+        "Lendário" => [
+            "chance" => 6,
+            "vida" => [190, 260],
+            "dano" => [25, 40]
+        ],
+
+        "Mítico" => [
+            "chance" => 3,
+            "vida" => [250, 330],
+            "dano" => [35, 50]
+        ],
+
+        "Divino" => [
+            "chance" => 1,
+            "vida" => [320, 400],
+            "dano" => [45, 60]
+        ]
+
+    ];
+
+    function escolherRaridade() {
+
+        $numero = rand(1, 100);
+
+        $acumulado = 0;
+
+        foreach($this->raridades as $nome => $dados) {
+
+            $acumulado += $dados["chance"];
+
+            if($numero <= $acumulado) {
                 return $nome;
             }
 
@@ -51,23 +107,36 @@ class gerador {
 
     }
 
-
     function gerar() {
+
         $nome = $this->nomes[array_rand($this->nomes)];
 
-        $vida = rand(1, 400);
-        $dano = rand(1, 149);
+        $imagem = $this->imagens[array_rand($this->imagens)];
 
-        $classeVida = $this->descobrirClasse($vida, $this->classesVida);
-        $classeDano = $this->descobrirClasse($dano, $this->classesDano);
+        $classeVida = $this->classesVida[array_rand($this->classesVida)];
+
+        $classeDano = $this->classesDano[array_rand($this->classesDano)];
+
+        $raridade = $this->escolherRaridade();
+
+        $vida = rand(
+            $this->raridades[$raridade]["vida"][0],
+            $this->raridades[$raridade]["vida"][1]
+        );
+
+        $dano = rand(
+            $this->raridades[$raridade]["dano"][0],
+            $this->raridades[$raridade]["dano"][1]
+        );
 
         return new inimigo(
             $nome,
             $vida,
             $dano,
             $classeVida,
-            $classeDano
-            );
+            $classeDano,
+            $imagem
+        );
     }
 }
 
