@@ -341,7 +341,7 @@ if (
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="../css/combate.css">
-
+    <script src="../js/musica.js"></script>
     <link rel="stylesheet" href="../css/inventario.css">
 
     <script src="../js/combate.js"></script>

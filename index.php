@@ -5,7 +5,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 if($_SERVER['REQUEST_METHOD'] == "POST"){ 
     
     $_SESSION = [];
-    
+
     if($_POST['nome'] == 'luis') { 
         $_SESSION["jogador"] = new jogador ($_POST['nome'],$_POST['genero'], 1000,99999); 
         $jogador = $_SESSION["jogador"]; 
@@ -34,6 +34,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 <head> 
     <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <script src="js/musica.js"></script>
     <title>Labirinto</title> 
     <link rel="stylesheet" href="css/index.css"> 
 </head> 
@@ -47,7 +48,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         <h1>Labirinto das aleatoriedades</h1> 
         <h3>Crie seu personagem:</h3> 
  
-        <form method="POST"> 
+        <form method="POST" onsubmit="sessionStorage.removeItem('musicaAtual'); sessionStorage.removeItem('tempoMusica');"> 
             <input type="text" name="nome" placeholder="Nome" required>
             <br> 
 
@@ -72,6 +73,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         <form action="ranking.php" method="GET">
             <button type="submit">Ver Ranking</button>
         </form>
+
+
  
     </div> 
  
