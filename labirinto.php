@@ -124,7 +124,7 @@ if (
     <title>Labirinto</title>
 
     <link rel="stylesheet" href="css/labirinto.css">
-
+    <link rel="stylesheet" href="css/musica.css">
     <link rel="stylesheet" href="css/inventario.css">
 
 </head>

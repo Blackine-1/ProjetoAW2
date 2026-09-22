@@ -37,6 +37,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     <script src="js/musica.js"></script>
     <title>Labirinto</title> 
     <link rel="stylesheet" href="css/index.css"> 
+    <link rel="stylesheet" href="css/musica.css">
 </head> 
 
 <body> 

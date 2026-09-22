@@ -78,3 +78,13 @@ button:hover {
     background: #705d45;
     transform: scale(1.03);
 }
+
+html,
+body {
+    scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+}

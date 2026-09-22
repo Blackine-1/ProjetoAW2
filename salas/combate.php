@@ -343,7 +343,7 @@ if (
     <link rel="stylesheet" href="../css/combate.css">
     <script src="../js/musica.js"></script>
     <link rel="stylesheet" href="../css/inventario.css">
-
+    <link rel="stylesheet" href="../css/musica.css">
     <script src="../js/combate.js"></script>
 
     <?php if ($redirecionar) { ?>

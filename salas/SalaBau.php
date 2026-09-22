@@ -145,6 +145,7 @@ if (
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../js/musica.js"></script>
+    <link rel="stylesheet" href="../css/musica.css">
     <?php if ($vitoria) { ?>    
 
         <meta http-equiv="refresh" content="2;url=../labirinto.php">
